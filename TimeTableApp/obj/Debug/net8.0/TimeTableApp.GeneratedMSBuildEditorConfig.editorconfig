@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TimeTableApp
-build_property.ProjectDir = C:\Users\40723\Source\Repos\WEMLOrg\PPDPoject\TimeTableApp\
+build_property.ProjectDir = C:\Users\maria\RiderProjects\PPDPoject\TimeTableApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
