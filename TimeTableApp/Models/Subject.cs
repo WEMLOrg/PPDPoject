@@ -2,11 +2,11 @@ namespace TimeTableApp
 {
     class Subject
     {
-        private Guid _id { get; set; }
-        private int nrCopii { get; set; }
-        private string name { get; set; }
-        private bool specificRoom {  get; set; }
-        private Guid? roomId {  get; set; }
+        public Guid _id { get; set; }
+        public int nrCopii { get; set; }
+        public string name { get; set; }
+        public bool specificRoom {  get; set; }
+        public Guid? roomId {  get; set; }
 
         Subjects(int nr, string name, Guid roomId)
         {

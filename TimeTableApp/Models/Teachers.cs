@@ -2,9 +2,9 @@ namespace TimeTableApp.Models;
 
 public class Teachers
 {
-    private string teacherName{get;set;}
-    private Guid teacherId{get;set;}
-    private List<Guid> teacherSubjects{get;set;}
+    public string teacherName{get;set;}
+    public Guid teacherId{get;set;}
+    public List<Guid> teacherSubjects{get;set;}
 
     Teachers(string teacherName, Guid teacherId, List<Guid> teacherSubjects)
     {
