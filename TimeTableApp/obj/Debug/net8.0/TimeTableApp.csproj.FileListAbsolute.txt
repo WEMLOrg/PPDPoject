@@ -27,3 +27,4 @@ C:\Users\40723\Source\Repos\WEMLOrg\PPDPoject\TimeTableApp\obj\Debug\net8.0\refi
 C:\Users\40723\Source\Repos\WEMLOrg\PPDPoject\TimeTableApp\obj\Debug\net8.0\TimeTableApp.pdb
 C:\Users\40723\Source\Repos\WEMLOrg\PPDPoject\TimeTableApp\obj\Debug\net8.0\TimeTableApp.genruntimeconfig.cache
 C:\Users\40723\Source\Repos\WEMLOrg\PPDPoject\TimeTableApp\obj\Debug\net8.0\ref\TimeTableApp.dll
+C:\Users\maria\RiderProjects\PPDPoject\TimeTableApp\obj\Debug\net8.0\TimeTableApp.sourcelink.json
