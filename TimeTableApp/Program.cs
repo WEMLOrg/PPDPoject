@@ -1,3 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-Console.WriteLine("Hello, World!");
+﻿namespace TimeTableApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int startTime, endTime;
+            Console.WriteLine("hel");
+        }
+    }
+}
