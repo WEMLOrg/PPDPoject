@@ -16,7 +16,7 @@ namespace TimeTableApp
         public void BackTracking ()
         {
 
-            foreach (var t)
+          //  foreach (var t)
         }
         public bool isValid() {  return true; }
     }

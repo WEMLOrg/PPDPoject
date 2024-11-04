@@ -1,6 +1,6 @@
 namespace TimeTableApp
 {
-    class Group
+    public class Group
     {
         public Guid _id { get; set; }
         public int nrOfKids { get; set; }
