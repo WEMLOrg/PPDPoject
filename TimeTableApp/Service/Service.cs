@@ -2,7 +2,6 @@ namespace TimeTableApp
 {
     class Service
     {
-        public Repository repository {  get; set; }
         public int startTime { get; set; }
         public int endTime { get; set; }
 
