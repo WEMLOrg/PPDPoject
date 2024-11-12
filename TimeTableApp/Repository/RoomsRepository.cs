@@ -12,11 +12,20 @@ public class RoomsRepository
     {
         string filePath = generateDefaultFilePath();
         if (!File.Exists(filePath))
-        {
-            Console.WriteLine("pula shein");
+        { 
+            CreateNewXmlFile(filePath);
         }
         loadData(filePath);
 
+    }
+    private void CreateNewXmlFile(string filePath)
+    {
+        XDocument newDocument = new XDocument(
+            new XElement("Rooms")
+        );
+
+        newDocument.Save(filePath);
+        Console.WriteLine("New Rooms.xml file created at: " + filePath);
     }
     private string generateDefaultFilePath()
     {

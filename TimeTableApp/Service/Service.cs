@@ -7,14 +7,16 @@ namespace TimeTableApp
     {
         public int startTime { get; set; }
         public int endTime { get; set; }
+        public GroupsRepository groupsRepository { get; set; }
         public TeachersRepository teachersRepository { get; set; }
         public SubjectsRepository subjectsRepository { get; set; }
         public RoomsRepository roomsRepository { get; set; }
         public TimeTableRepo timeTableRepo { get; set; }
 
 
-        public Service(TeachersRepository teacherRepo, SubjectsRepository subjectRepo, RoomsRepository roomRepo,  TimeTableRepo orarRepo, int startTime, int endTime)
+        public Service(GroupsRepository groupsRepository, TeachersRepository teacherRepo, SubjectsRepository subjectRepo, RoomsRepository roomRepo,  TimeTableRepo orarRepo, int startTime, int endTime)
         {
+            groupsRepository = groupsRepository;
             teachersRepository = teacherRepo;
             subjectsRepository = subjectRepo;
             roomsRepository = roomRepo;

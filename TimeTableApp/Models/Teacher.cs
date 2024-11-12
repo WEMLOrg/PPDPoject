@@ -6,10 +6,10 @@ public class Teacher
     public Guid _id{get;set;}
     public List<Guid> teacherSubjects{get;set;}
 
-    public Teacher(string teacherName, List<Guid> teacherSubjects)
+    public Teacher(Guid id, string teacherName, List<Guid> teacherSubjects)
     {
         this.teacherName = teacherName;
-        this._id = Guid.NewGuid();
+        this._id = id;
         this.teacherSubjects = teacherSubjects;
     }
 

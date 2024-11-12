@@ -17,11 +17,21 @@ namespace TimeTableApp.Repository
             if (!File.Exists(filePath))
             {
                 Console.WriteLine("File not found: " + filePath);
+                CreateNewXmlFile(filePath);
                 return;
             }
             LoadData(filePath);
         }
 
+        private void CreateNewXmlFile(string filePath)
+        {
+            XDocument newDocument = new XDocument(
+                new XElement("Groups")
+            );
+
+            newDocument.Save(filePath);
+            Console.WriteLine("New Rooms.xml file created at: " + filePath);
+        }
         private string GenerateDefaultFilePath()
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Groups.xml");
@@ -74,10 +84,8 @@ namespace TimeTableApp.Repository
                                 {
                                     continue;
                                 }
-                                //necessarySubjects.Add(new Dictionary<new KeyValuePair<Guid, Guid>((subjectId, teacherId), hours);
+                                
                                 necessarySubjects.Add(new KeyValuePair<Guid, Guid>(subjectId, teacherId), hours);
-
-                                //necessarySubjects.Add(new KeyValuePair<Guid, Guid>(subjectId, teacherId), hours);
 
                             }
                         }

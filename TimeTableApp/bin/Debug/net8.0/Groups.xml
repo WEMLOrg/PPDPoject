@@ -1,0 +1,22 @@
+<Groups>
+	<Group Id="3aafba90-e84d-4cc7-b91c-2f92904556d5" NrOfKids="30">
+		<NecessarySubjects>
+			<Subject SubjectId="e5e7c6b0-b8fa-4757-a0da-c149ae1c8392" TeacherId="b12413c1-75ea-4294-bc8d-510edcd9d1fe" Hours="3" />
+			<Subject SubjectId="ab6e0d9f-c9f8-4b77-b0a7-df84b124c8ea" TeacherId="dfe5f729-bfc6-4937-a7a9-e1a4b342c1d9" Hours="2" />
+			<Subject SubjectId="f0f9e18c-3f0b-42a5-b91a-b3db1bb9f5b0" TeacherId="e91e7c89-5b45-40be-b054-9945a14a2b59" Hours="4" />
+		</NecessarySubjects>
+	</Group>
+	<Group Id="d0a7a02c-1d55-4b4e-b545-5e3ac93533ff" NrOfKids="25">
+		<NecessarySubjects>
+			<Subject SubjectId="cf84e9e9-f513-44f1-8910-8ea1b520f9b1" TeacherId="e91e7c89-5b45-40be-b054-9945a14a2b59" Hours="2" />
+			<Subject SubjectId="e91e7c89-5b45-40be-b054-9945a14a2b59" TeacherId="ab6e0d9f-c9f8-4b77-b0a7-df84b124c8ea" Hours="3" />
+			<Subject SubjectId="e5e7c6b0-b8fa-4757-a0da-c149ae1c8392" TeacherId="b12413c1-75ea-4294-bc8d-510edcd9d1fe" Hours="5" />
+		</NecessarySubjects>
+	</Group>
+	<Group Id="b1cb7d99-88ad-48f1-83b5-49c8b5c63a73" NrOfKids="40">
+		<NecessarySubjects>
+			<Subject SubjectId="f0f9e18c-3f0b-42a5-b91a-b3db1bb9f5b0" TeacherId="e91e7c89-5b45-40be-b054-9945a14a2b59" Hours="6" />
+			<Subject SubjectId="ab6e0d9f-c9f8-4b77-b0a7-df84b124c8ea" TeacherId="dfe5f729-bfc6-4937-a7a9-e1a4b342c1d9" Hours="4" />
+		</NecessarySubjects>
+	</Group>
+</Groups>

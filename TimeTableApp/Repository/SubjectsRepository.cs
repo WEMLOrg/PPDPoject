@@ -17,11 +17,20 @@ namespace TimeTableApp.Repository
             if (!File.Exists(filePath))
             {
                 Console.WriteLine("File not found: " + filePath);
+                CreateNewXmlFile(filePath);
                 return; 
             }
             LoadData(filePath);
         }
+        private void CreateNewXmlFile(string filePath)
+        {
+            XDocument newDocument = new XDocument(
+                new XElement("Subjects")
+            );
 
+            newDocument.Save(filePath);
+            Console.WriteLine("New Rooms.xml file created at: " + filePath);
+        }
         private string GenerateDefaultFilePath()
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Subjects.xml");
