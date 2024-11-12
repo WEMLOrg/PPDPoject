@@ -16,9 +16,9 @@ namespace TimeTableApp.Models
             this.specificRoom = true;
             this.roomId = roomId;
         }
-        public Subject(string name)
+        public Subject(Guid id, string name)
         {
-            _id = Guid.NewGuid();
+            _id = id;
            // this.nrCopii = nr;
             this.name = name;
             this.specificRoom = false;

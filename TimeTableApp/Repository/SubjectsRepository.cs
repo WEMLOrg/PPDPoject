@@ -54,12 +54,17 @@ namespace TimeTableApp.Repository
                         {
                             bool.TryParse(specificRoomAttribute.Value, out specificRoom);
                         }
-                        if (specificRoom && !Guid.TryParse((string)elem.Attribute("RoomId"), out roomId))
+                        if (!Guid.TryParse((string)elem.Attribute("RoomId"), out roomId))
                         {
                             continue;
                         }
-                        Subject subject = specificRoom ? new Subject(id, name, roomId) : new Subject(id, name);
-                        SubjectsList.Add(subject);
+                        Subject s;
+                        if (specificRoom)
+                             s = new Subject(id, name);
+                        else 
+                             s = new Subject(id, name, roomId);
+                        
+                        SubjectsList.Add(s);
                     }
                 }
             }
