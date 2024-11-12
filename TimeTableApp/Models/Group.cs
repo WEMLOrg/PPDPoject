@@ -4,8 +4,8 @@ namespace TimeTableApp
     {
         public Guid _id { get; set; }
         public int nrOfKids { get; set; }
-        public Dictionary<Guid, int> necessarySubjects { get; set; }
-
+        public Dictionary<KeyValuePair<Guid, Guid>, int> necessarySubjects { get; set; }
+                                    //materieId, profId
         Group(int nr, Dictionary<Guid, int> necessarySubjects)
         {
             _id = Guid.NewGuid();
@@ -13,9 +13,9 @@ namespace TimeTableApp
             necessarySubjects = necessarySubjects;
         }
 
-        public bool doesGroupHaveSubject(Guid subject)
+        public bool doesGroupHaveSubject(Guid subject, Guid teacher)
         {
-            return necessarySubjects.ContainsKey(subject);
+            return necessarySubjects.ContainsKey(new KeyValuePair<Guid, Guid>(subject, teacher));
         }
 
         public static bool operator ==(Group t1, Group t2)

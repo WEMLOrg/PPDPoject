@@ -58,11 +58,11 @@ namespace TimeTableApp
             return true;
         }
 
-        public bool doesGroupHaveAlreadyEnoughHoursForSubject(Subject s, Group g)
+        public bool doesGroupHaveAlreadyEnoughHoursForSubject(Subject s, Group g, Teacher t)
         {
-            if (g.doesGroupHaveSubject(s._id))
+            if (g.doesGroupHaveSubject(s._id, t._id))
             {
-                int necessaryHours = g.necessarySubjects.GetValueOrDefault(s._id);
+                int necessaryHours = g.necessarySubjects.GetValueOrDefault(new KeyValuePair<Guid, Guid>(s._id, t._id));
                 foreach (TimetableEntry te in timeTableRepo.GetEntries())
                 {
                     if (necessaryHours == 0)
@@ -79,9 +79,9 @@ namespace TimeTableApp
         }
         public bool isValid(Group g, Room r, Teacher t, Subject s, int h, TimetableEntry.Days d) 
         {
-            if (doesGroupFitInRoom(r, g) && g.doesGroupHaveSubject(s._id) && 
+            if (doesGroupFitInRoom(r, g) && g.doesGroupHaveSubject(s._id, t._id) && 
                 t.DoesTeacherTeachSubject(s._id) && isRoomAvailable(r, d, h) && 
-                !doesGroupHaveAlreadyEnoughHoursForSubject(s, g))
+                !doesGroupHaveAlreadyEnoughHoursForSubject(s, g, t))
                 return true;
             return false;
 
