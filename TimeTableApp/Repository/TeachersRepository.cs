@@ -19,6 +19,7 @@ namespace TimeTableApp.Repository
             if (!File.Exists(filePath))
             {
                 Console.WriteLine("File not found: " + filePath);
+                CreateDefaultTeachersFile(filePath);
                 return;
             }
             LoadData(filePath);
@@ -42,6 +43,12 @@ namespace TimeTableApp.Repository
                 {
                     foreach (var elem in root.Elements("Teacher"))
                     {
+                        Guid teacherId;
+                        if (!Guid.TryParse((string)elem.Attribute("Id"), out teacherId))
+                        {
+                            continue; 
+                        }
+
                         string teacherName = (string)elem.Attribute("Name");
                         List<Guid> teacherSubjects = new List<Guid>();
 
@@ -62,7 +69,7 @@ namespace TimeTableApp.Repository
                                 }
                             }
                         }
-                        Teacher teacher = new Teacher(teacherName, teacherSubjects);
+                        Teacher teacher = new Teacher(teacherName, teacherSubjects){ _id = teacherId};
                         TeachersList.Add(teacher);
                     }
                 }
@@ -82,5 +89,47 @@ namespace TimeTableApp.Repository
         {
             return TeachersList;
         }
+        
+        private void CreateDefaultTeachersFile(string filePath)
+        {
+            Console.WriteLine("Creating default teachers data file: " + filePath);
+
+            XDocument xDocument = new XDocument(
+                new XElement("Teachers",
+                    new XElement("Teacher",
+                        new XAttribute("Id", "b9f7d214-bab4-46a9-95f2-2d8f1b08470e"),  // Teacher John Doe
+                        new XAttribute("Name", "John Doe"),
+                        new XElement("Subjects",
+                            new XElement("Subject", new XAttribute("Name", "Mathematics"))
+                        )
+                    ),
+                    new XElement("Teacher",
+                        new XAttribute("Id", "d2a5316b-7242-431b-9abf-289f4bb6f831"),  // Teacher Jane Smith
+                        new XAttribute("Name", "Jane Smith"),
+                        new XElement("Subjects",
+                            new XElement("Subject", new XAttribute("Name", "Chemistry"))
+                        )
+                    ),
+                    new XElement("Teacher",
+                        new XAttribute("Id", "f1d5a34b-497f-42d4-a72e-0198c1b40c29"),  // Teacher Alice Johnson
+                        new XAttribute("Name", "Alice Johnson"),
+                        new XElement("Subjects",
+                            new XElement("Subject", new XAttribute("Name", "Physics"))
+                        )
+                    )
+                )
+            );
+
+            try
+            {
+                xDocument.Save(filePath);
+                Console.WriteLine("Teachers file created successfully.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while creating the default teachers file: " + ex.Message);
+            }
+        }
+
     }
 }

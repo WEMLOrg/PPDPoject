@@ -79,7 +79,10 @@ namespace TimeTableApp.Repository
                         writer.WriteLine($"{teacherName},{subjectName},{groupId},{roomId},{day},{hour}");
                     }
                 }
-
+                if (list.Count == 0)
+                {
+                    Console.WriteLine("No entries in the timetable.");
+                }
                 Console.WriteLine("Timetable successfully exported to CSV.");
             }
             catch (Exception ex)
