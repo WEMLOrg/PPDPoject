@@ -1,25 +1,56 @@
 using TimeTableApp.Models;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace TimeTableApp.Repository;
 
 public class RoomsRepository
 {
-    private List<Room> RoomsList;
+    private List<Room> RoomsList = new List<Room>();
 
     RoomsRepository()
     {
-        RoomsList.Add(new Room(30));
-        RoomsList.Add(new Room(50));
-        RoomsList.Add(new Room(35));
-        RoomsList.Add(new Room(45));
-        RoomsList.Add(new Room(100));
-        RoomsList.Add(new Room(56));
-        RoomsList.Add(new Room(80));
-        RoomsList.Add(new Room(20));
-        RoomsList.Add(new Room(80));
-        RoomsList.Add(new Room(100));
+        string filePath = generateDefaultFilePath();
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine("pula shein");
+        }
+        loadData(filePath);
+
     }
-    
+    private string generateDefaultFilePath()
+    {
+        return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Rooms.xml");
+    }
+
+    private void loadData(string filePath)
+    {
+        Console.WriteLine("Reading rooms data from file: " + filePath);
+
+        XDocument xDocument = XDocument.Load(filePath);
+        XElement root = xDocument.Element("Rooms");
+        if (root != null && root.HasElements)
+        {
+            foreach (var elem in root.Elements("Room"))
+            {
+                Guid Id;
+                if (!Guid.TryParse((string)elem.Attribute("Id"), out Id))
+                {
+                    continue;
+                }
+                int capacity;
+                if (!int.TryParse((string)elem.Attribute("Cap"), out capacity))
+                {
+                    continue;
+                }
+
+                Room room = new Room(Id, capacity);
+                RoomsList.Add(room);
+
+            }
+        }
+    }
+
     public void AddRoom(Room room)
     {
         RoomsList.Add(room);

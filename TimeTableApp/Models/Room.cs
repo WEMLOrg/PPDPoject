@@ -1,12 +1,13 @@
 namespace TimeTableApp.Models
 {
-    public class Room 
+    public class Room
     {
         public Guid _id { get; set; }
         public int capacity { get; set; }
 
-        public Room(int capacity)
+        public Room(Guid id, int capacity)
         {
+            this._id = id;
             this.capacity = capacity;
         }
 
@@ -21,3 +22,4 @@ namespace TimeTableApp.Models
             return !(t1 == t2);
         }
     }
+}

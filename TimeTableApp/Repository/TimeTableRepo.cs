@@ -7,7 +7,7 @@ namespace TimeTableApp.Repository
 {
     public class TimeTableRepo
     {
-        p List<TimetableEntry> list { get; set; }
+        public List<TimetableEntry> list { get; set; }
 
         public TimeTableRepo()
         {

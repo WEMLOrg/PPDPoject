@@ -33,7 +33,7 @@ namespace TimeTableApp
         }
         public bool isRoomAvailable(Room r, TimetableEntry.Days day, int hour)
         {
-            foreach(TimetableEntry te in timeTableRepo)
+            foreach(TimetableEntry te in timeTableRepo.GetEntries())
             {
                 if (te.day == day) 
                     if (te.hour == hour)
@@ -44,7 +44,7 @@ namespace TimeTableApp
         }
         public bool isSolution(TimetableEntry t) 
         {
-            foreach (TimetableEntry te in timeTableRepo)
+            foreach (TimetableEntry te in timeTableRepo.GetEntries())
             {
                 if (te == t)
                     return false;
@@ -63,13 +63,12 @@ namespace TimeTableApp
             if (g.doesGroupHaveSubject(s._id))
             {
                 int necessaryHours = g.necessarySubjects.GetValueOrDefault(s._id);
-                foreach (TimetableEntry te in TimeTableRepo.GetEntries())
+                foreach (TimetableEntry te in timeTableRepo.GetEntries())
                 {
                     if (necessaryHours == 0)
                         return true;
                     if (te.subject == s && te.group == g)
                         necessaryHours--;
-
                 }
 
                 if (necessaryHours == 0)
@@ -81,7 +80,7 @@ namespace TimeTableApp
         public bool isValid(Group g, Room r, Teacher t, Subject s, int h, TimetableEntry.Days d) 
         {
             if (doesGroupFitInRoom(r, g) && g.doesGroupHaveSubject(s._id) && 
-                t.DoesTeacherTeachSubject(s._id) && isRoomAvailable(r, g, d, h) && 
+                t.DoesTeacherTeachSubject(s._id) && isRoomAvailable(r, d, h) && 
                 !doesGroupHaveAlreadyEnoughHoursForSubject(s, g))
                 return true;
             return false;
