@@ -8,8 +8,9 @@ namespace TimeTableApp
         static void Main(string[] args)
         {
             int startTime=8, endTime=14;
-            TeachersRepository teachersRepository = new TeachersRepository();
+            
             SubjectsRepository subjectsRepository = new SubjectsRepository();
+            TeachersRepository teachersRepository = new TeachersRepository(subjectsRepository);
             RoomsRepository roomsRepository = new RoomsRepository();
             TimeTableRepo timeTableRepo = new TimeTableRepo();
             

@@ -7,7 +7,7 @@ namespace TimeTableApp
         public Dictionary<KeyValuePair<Guid, Guid>, int> necessarySubjects { get; set; }
                                     //materieId, profId
 
-        public Group(Guid id, int nr, Dictionary<Guid, int> necessarySubjects)
+        public Group(Guid id, int nr, Dictionary<KeyValuePair<Guid, Guid>, int> necessarySubjects)
         {
             _id = id;
             nrOfKids = nr;
