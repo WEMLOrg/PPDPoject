@@ -1,42 +1,92 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 using TimeTableApp.Models;
 
-namespace TimeTableApp.Repository;
-
-public class SubjectsRepository
+namespace TimeTableApp.Repository
 {
-    private List<Subject> SubjectsList;
-
-    public SubjectsRepository()
+    public class SubjectsRepository
     {
-        SubjectsList = new List<Subject>();
-        SubjectsList.Add(new Subject(30, "mate"));
-        SubjectsList.Add(new Subject(30, "romana"));
-        SubjectsList.Add(new Subject(50, "engleza"));
-        SubjectsList.Add(new Subject(15, "chimie"));
-        SubjectsList.Add(new Subject(30, "georgrafie"));
-        SubjectsList.Add(new Subject(30, "istorie"));
-        SubjectsList.Add(new Subject(30, "educatie civica"));
-        SubjectsList.Add(new Subject(30, "sport"));
-        SubjectsList.Add(new Subject(28, "germana"));
-        SubjectsList.Add(new Subject(31, "franceza"));
-    }
+        private List<Subject> SubjectsList = new List<Subject>();
 
-    public Guid GetSubjectGuid(String name)
-    {
-        foreach (Subject subject in SubjectsList )
+        public SubjectsRepository()
         {
-            if (subject.name == name)
-                return subject._id;
+            string filePath = GenerateDefaultFilePath();
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("File not found: " + filePath);
+                return; 
+            }
+            LoadData(filePath);
         }
 
-        return Guid.Empty;
-    }
-    public void AddSubject(Subject subject)
-    {
-        SubjectsList.Add(subject);
-    }
-    public List<Subject> GetSubjects()
-    {
-        return SubjectsList;
+        private string GenerateDefaultFilePath()
+        {
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Subjects.xml");
+        }
+
+        private void LoadData(string filePath)
+        {
+            Console.WriteLine("Reading subjects data from file: " + filePath);
+
+            try
+            {
+                XDocument xDocument = XDocument.Load(filePath);
+                XElement root = xDocument.Element("Subjects");
+
+                if (root != null && root.HasElements)
+                {
+                    foreach (var elem in root.Elements("Subject"))
+                    {
+                        Guid id;
+                        string name = (string)elem.Attribute("Name");
+                        bool specificRoom = false;
+                        Guid roomId = Guid.Empty;
+
+                        if (!Guid.TryParse((string)elem.Attribute("Id"), out id))
+                        {
+                            continue;
+                        }
+                        var specificRoomAttribute = elem.Attribute("SpecificRoom");
+                        if (specificRoomAttribute != null)
+                        {
+                            bool.TryParse(specificRoomAttribute.Value, out specificRoom);
+                        }
+                        if (specificRoom && !Guid.TryParse((string)elem.Attribute("RoomId"), out roomId))
+                        {
+                            continue;
+                        }
+                        Subject subject = specificRoom ? new Subject(id, name, roomId) : new Subject(id, name);
+                        SubjectsList.Add(subject);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while loading subjects data: " + ex.Message);
+            }
+        }
+
+        public Guid GetSubjectGuid(string name)
+        {
+            foreach (Subject subject in SubjectsList)
+            {
+                if (subject.name == name)
+                    return subject._id;
+            }
+            return Guid.Empty;
+        }
+
+        public void AddSubject(Subject subject)
+        {
+            SubjectsList.Add(subject);
+        }
+
+        public List<Subject> GetSubjects()
+        {
+            return SubjectsList;
+        }
     }
 }

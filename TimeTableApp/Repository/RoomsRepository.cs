@@ -8,7 +8,7 @@ public class RoomsRepository
 {
     private List<Room> RoomsList = new List<Room>();
 
-    RoomsRepository()
+    public RoomsRepository()
     {
         string filePath = generateDefaultFilePath();
         if (!File.Exists(filePath))

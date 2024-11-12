@@ -8,7 +8,7 @@ namespace TimeTableApp.Models
         public bool specificRoom {  get; set; }
         public Guid? roomId {  get; set; }
 
-        public Subject(Guid id, int nr, string name, Guid roomId)
+        public Subject(Guid id, string name, Guid roomId)
         {
             this._id = id;
            // this.nrCopii = nr;
@@ -16,7 +16,7 @@ namespace TimeTableApp.Models
             this.specificRoom = true;
             this.roomId = roomId;
         }
-        public Subject(int nr, string name)
+        public Subject(string name)
         {
             _id = Guid.NewGuid();
            // this.nrCopii = nr;
