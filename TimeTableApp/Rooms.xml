@@ -1,0 +1,12 @@
+<Rooms>
+	<Room Id="a16e8d98-5c24-4a37-824f-2dcfb5f246a3" Cap="30" />
+	<Room Id="b59f16b7-e30c-4cde-8a3c-1f239fb367de" Cap="25" />
+	<Room Id="c4038de8-a58e-46bc-8247-6a3e9ecf8471" Cap="20" />
+	<Room Id="d02f547b-56d5-4c6c-80d4-2f1e4b5865f8" Cap="35" />
+	<Room Id="e308e9de-3f4d-41b1-8c8b-7c7a7c3f89c3" Cap="40" />
+	<Room Id="f113c456-789c-4c45-b3a9-8b4a1cb7a476" Cap="50" />
+	<Room Id="01479f22-12c4-490a-80f4-9e8f4c1561d3" Cap="15" />
+	<Room Id="2d8d58b0-7e8e-4a93-9f24-3b5d4a6c2469" Cap="45" />
+	<Room Id="391ee4d5-7f7d-4d21-82d9-1a2b85e75a24" Cap="60" />
+	<Room Id="4f587c2a-3f3a-45f8-8c2f-5e2f4c3569fa" Cap="55" />
+</Rooms>

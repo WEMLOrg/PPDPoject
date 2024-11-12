@@ -59,5 +59,33 @@ namespace TimeTableApp.Repository
         {
             return list.Where(l => l.room._id == roomId).ToList();
         }
+
+        public void PrintToCSV(string filePath)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    writer.WriteLine("Teacher,Subject,GroupID,RoomID,Day,Hour");
+                    foreach (var entry in list)
+                    {
+                        string teacherName = entry.teacher?.teacherName ?? "Unknown";
+                        string subjectName = entry.subject?.name ?? "Unknown";
+                        string groupId = entry.group?._id.ToString() ?? "Unknown";
+                        string roomId = entry.room?._id.ToString() ?? "Unknown";
+                        string day = entry.day.ToString();
+                        string hour = entry.hour.ToString();
+
+                        writer.WriteLine($"{teacherName},{subjectName},{groupId},{roomId},{day},{hour}");
+                    }
+                }
+
+                Console.WriteLine("Timetable successfully exported to CSV.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while exporting to CSV: " + ex.Message);
+            }
+        }
     }
 }

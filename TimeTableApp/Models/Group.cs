@@ -6,9 +6,10 @@ namespace TimeTableApp
         public int nrOfKids { get; set; }
         public Dictionary<KeyValuePair<Guid, Guid>, int> necessarySubjects { get; set; }
                                     //materieId, profId
-        Group(int nr, Dictionary<Guid, int> necessarySubjects)
+
+        public Group(Guid id, int nr, Dictionary<Guid, int> necessarySubjects)
         {
-            _id = Guid.NewGuid();
+            _id = id;
             nrOfKids = nr;
             necessarySubjects = necessarySubjects;
         }

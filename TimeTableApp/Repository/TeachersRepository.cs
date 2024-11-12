@@ -1,53 +1,86 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 using TimeTableApp.Models;
 
-namespace TimeTableApp.Repository;
-
-public class TeachersRepository
+namespace TimeTableApp.Repository
 {
-    private List<Teacher> TeachersList;
-    private SubjectsRepository SubjectsRepository;
-
-    TeachersRepository()
+    public class TeachersRepository
     {
-        TeachersList = new List<Teacher>();
-        
-        List<Guid> TeacherSubjectList1 = new List<Guid>();
-        TeacherSubjectList1.Add(SubjectsRepository.GetSubjectGuid("romana"));
-        TeacherSubjectList1.Add(SubjectsRepository.GetSubjectGuid("mate"));
-        
-        TeachersList.Add(new Teacher("delia", TeacherSubjectList1 ));
-        
-        List<Guid> teacherSubjectList2 = new List<Guid>
-        {
-            SubjectsRepository.GetSubjectGuid("engleza"),
-            SubjectsRepository.GetSubjectGuid("germana")
-        };
-        TeachersList.Add(new Teacher("Ion", teacherSubjectList2));
+        private List<Teacher> TeachersList = new List<Teacher>();
+        private SubjectsRepository SubjectsRepository;
 
-        List<Guid> teacherSubjectList3 = new List<Guid>
+        public TeachersRepository(SubjectsRepository subjectsRepository)
         {
-            SubjectsRepository.GetSubjectGuid("istorie"),
-            SubjectsRepository.GetSubjectGuid("educatie civica"),
-            SubjectsRepository.GetSubjectGuid("romana")
-        };
-        TeachersList.Add(new Teacher("Maria", teacherSubjectList3));
+            SubjectsRepository = subjectsRepository;
+            string filePath = GenerateDefaultFilePath();
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("File not found: " + filePath);
+                return;
+            }
+            LoadData(filePath);
+        }
 
-        List<Guid> teacherSubjectList4 = new List<Guid>
+        private string GenerateDefaultFilePath()
         {
-            SubjectsRepository.GetSubjectGuid("geografie"),
-            SubjectsRepository.GetSubjectGuid("germana"),
-            SubjectsRepository.GetSubjectGuid("sport")
-        };
-        TeachersList.Add(new Teacher("Andrei", teacherSubjectList4));
+            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Teachers.xml");
+        }
 
+        private void LoadData(string filePath)
+        {
+            Console.WriteLine("Reading teachers data from file: " + filePath);
+
+            try
+            {
+                XDocument xDocument = XDocument.Load(filePath);
+                XElement root = xDocument.Element("Teachers");
+
+                if (root != null && root.HasElements)
+                {
+                    foreach (var elem in root.Elements("Teacher"))
+                    {
+                        string teacherName = (string)elem.Attribute("Name");
+                        List<Guid> teacherSubjects = new List<Guid>();
+
+                        XElement subjectsElement = elem.Element("Subjects");
+                        if (subjectsElement != null && subjectsElement.HasElements)
+                        {
+                            foreach (var subjectElem in subjectsElement.Elements("Subject"))
+                            {
+                                string subjectName = (string)subjectElem.Attribute("Name");
+                                Guid subjectId = SubjectsRepository.GetSubjectGuid(subjectName);
+                                if (subjectId != Guid.Empty)
+                                {
+                                    teacherSubjects.Add(subjectId);
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Subject '{subjectName}' not found in SubjectsRepository.");
+                                }
+                            }
+                        }
+                        Teacher teacher = new Teacher(teacherName, teacherSubjects);
+                        TeachersList.Add(teacher);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while loading teachers data: " + ex.Message);
+            }
+        }
+
+        public void AddTeacher(Teacher teacher)
+        {
+            TeachersList.Add(teacher);
+        }
+
+        public List<Teacher> GetTeachers()
+        {
+            return TeachersList;
+        }
     }
-
-    public void AddTeacher(Teacher teacher)
-    {
-        TeachersList.Add(teacher);
-    }
-    public List<Teacher> GetTeachers()
-    {
-        return TeachersList;
-    } 
 }

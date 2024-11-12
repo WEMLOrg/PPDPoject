@@ -12,7 +12,8 @@ namespace TimeTableApp
         public RoomsRepository roomsRepository { get; set; }
         public TimeTableRepo timeTableRepo { get; set; }
 
-        Service(TeachersRepository teacherRepo, SubjectsRepository subjectRepo, RoomsRepository roomRepo, TimeTableRepo orarRepo, int startTime, int endTime)
+
+        public Service(TeachersRepository teacherRepo, SubjectsRepository subjectRepo, RoomsRepository roomRepo,  TimeTableRepo orarRepo, int startTime, int endTime)
         {
             teachersRepository = teacherRepo;
             subjectsRepository = subjectRepo;
@@ -77,12 +78,23 @@ namespace TimeTableApp
 
             return false;
         }
+        public bool isSpecificRoomNeeded(Subject s)
+        {
+            if (s.specificRoom)
+                return true;
+            return false;
+        }
         public bool isValid(Group g, Room r, Teacher t, Subject s, int h, TimetableEntry.Days d) 
         {
-            if (doesGroupFitInRoom(r, g) && g.doesGroupHaveSubject(s._id, t._id) && 
-                t.DoesTeacherTeachSubject(s._id) && isRoomAvailable(r, d, h) && 
+            if (doesGroupFitInRoom(r, g) && g.doesGroupHaveSubject(s._id, t._id) &&
+                t.DoesTeacherTeachSubject(s._id) && isRoomAvailable(r, d, h) &&
                 !doesGroupHaveAlreadyEnoughHoursForSubject(s, g, t))
-                return true;
+                if (isSpecificRoomNeeded(s))
+                    if (r._id != s.roomId)
+                        return false; 
+                    else
+                        return true;
+
             return false;
 
         }
