@@ -14,6 +14,7 @@ namespace TimeTableApp
             TeachersRepository teachersRepository = new TeachersRepository();
             RoomsRepository roomsRepository = new RoomsRepository();
             TimeTableRepo timeTableRepo = new TimeTableRepo();
+            GroupsRepository groupsRepository = new GroupsRepository();
             
             Service service = new Service(groupsRepository, teachersRepository, subjectsRepository, roomsRepository, timeTableRepo, startTime, endTime);
             service.BackTracking();

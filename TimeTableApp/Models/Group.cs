@@ -7,11 +7,11 @@ namespace TimeTableApp
         public Dictionary<KeyValuePair<Guid, Guid>, int> necessarySubjects { get; set; }
                                     //materieId, profId
 
-        public Group(Guid id, int nr, Dictionary<KeyValuePair<Guid, Guid>, int> necessarySubjects)
+        public Group(Guid id, int nr, Dictionary<KeyValuePair<Guid, Guid>, int> necessarySubj)
         {
             _id = id;
             nrOfKids = nr;
-            necessarySubjects = necessarySubjects;
+            this.necessarySubjects = necessarySubj;
         }
 
         public bool doesGroupHaveSubject(Guid subject, Guid teacher)
@@ -29,5 +29,18 @@ namespace TimeTableApp
         {
             return !(t1 == t2);
         }
+        
+        public int GetRequiredHoursForSubject(Guid subjectId, Guid teacherId)
+        {
+            var key = new KeyValuePair<Guid, Guid>(subjectId, teacherId);
+
+            if (necessarySubjects.TryGetValue(key, out int requiredHours))
+            {
+                return requiredHours;
+            }
+    
+            return 0;
+        }
+
     }
 }
