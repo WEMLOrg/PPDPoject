@@ -24,4 +24,8 @@ public class RoomsRepository
     {
         RoomsList.Add(room);
     }
+    public List<Room> GetRooms()
+    {
+        return RoomsList;
+    }
 }

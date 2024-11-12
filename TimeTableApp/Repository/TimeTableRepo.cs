@@ -7,19 +7,19 @@ namespace TimeTableApp.Repository
 {
     public class TimeTableRepo
     {
-        private List<TimeTableEntry> list { get; set; }
+        p List<TimetableEntry> list { get; set; }
 
         public TimeTableRepo()
         {
-            list = new List<TimeTableEntry>();
+            list = new List<TimetableEntry>();
         }
 
-        public TimeTableRepo(List<TimeTableEntry> list)
+        public TimeTableRepo(List<TimetableEntry> list)
         {
-            this.list = list ?? new List<TimeTableEntry>(); 
+            this.list = list ?? new List<TimetableEntry>(); 
         }
 
-        public void AddEntry(TimeTableEntry timeTableEntry)
+        public void AddEntry(TimetableEntry timeTableEntry)
         {
             if (timeTableEntry == null)
                 throw new ArgumentNullException(nameof(timeTableEntry), "Cannot add null entry.");
@@ -27,7 +27,7 @@ namespace TimeTableApp.Repository
             list.Add(timeTableEntry);
         }
 
-        public void DeleteEntry(TimeTableEntry timeTableEntry)
+        public void DeleteEntry(TimetableEntry timeTableEntry)
         {
             if (timeTableEntry == null)
                 throw new ArgumentNullException(nameof(timeTableEntry), "Cannot delete null entry.");
@@ -35,22 +35,27 @@ namespace TimeTableApp.Repository
             list.Remove(timeTableEntry); 
         }
 
-        public List<TimeTableEntry> GetEntriesByTeacherId(Guid teacherId)
+        public List<TimetableEntry> GetEntriesByTeacherId(Guid teacherId)
         {
             return list.Where(l => l.teacher._id == teacherId).ToList();
         }
+        
+        public List<TimetableEntry> GetEntries()
+        {
+            return list;
+        }
 
-        public List<TimeTableEntry> GetEntriesBySubjectId(Guid subjectId)
+        public List<TimetableEntry> GetEntriesBySubjectId(Guid subjectId)
         {
             return list.Where(l => l.subject._id == subjectId).ToList(); 
         }
 
-        public List<TimeTableEntry> GetEntriesByGroupId(Guid groupId)
+        public List<TimetableEntry> GetEntriesByGroupId(Guid groupId)
         {
             return list.Where(l => l.group._id == groupId).ToList();
         }
 
-        public List<TimeTableEntry> GetEntriesByRoomId(Guid roomId)
+        public List<TimetableEntry> GetEntriesByRoomId(Guid roomId)
         {
             return list.Where(l => l.room._id == roomId).ToList();
         }

@@ -35,4 +35,8 @@ public class SubjectsRepository
     {
         SubjectsList.Add(subject);
     }
+    public List<Subject> GetSubjects()
+    {
+        return SubjectsList;
+    }
 }

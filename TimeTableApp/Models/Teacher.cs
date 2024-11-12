@@ -28,6 +28,17 @@ public class Teacher
 
         return false;
     }
-    
-    
+
+    public static bool operator ==(Teacher t1, Teacher t2)
+    {
+        if (ReferenceEquals(t1, t2)) return true;
+        if (t1 is null || t2 is null) return false;
+        return t1._id == t2._id;
+    }
+    public static bool operator !=(Teacher t1, Teacher t2)
+    {
+        return !(t1 == t2);
+    }
+
+
 }

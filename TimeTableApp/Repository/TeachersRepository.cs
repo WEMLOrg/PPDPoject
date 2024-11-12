@@ -46,4 +46,8 @@ public class TeachersRepository
     {
         TeachersList.Add(teacher);
     }
+    public List<Teacher> GetTeachers()
+    {
+        return TeachersList;
+    } 
 }
