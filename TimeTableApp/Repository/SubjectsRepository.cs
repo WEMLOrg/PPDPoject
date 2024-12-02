@@ -18,8 +18,6 @@ namespace TimeTableApp.Repository
             {
                 Console.WriteLine("File not found: " + filePath);
                 CreateDefaultSubjectsFile(filePath);
-                CreateNewXmlFile(filePath);
-                return; 
             }
             LoadData(filePath);
         }

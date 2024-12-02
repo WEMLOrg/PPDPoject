@@ -11,13 +11,12 @@ namespace TimeTableApp
         public TeachersRepository teachersRepository { get; set; }
         public SubjectsRepository subjectsRepository { get; set; }
         public RoomsRepository roomsRepository { get; set; }
-        public GroupsRepository groupsRepository { get; set; }
         public TimeTableRepo timeTableRepo { get; set; }
         public List<TimetableEntry.Days> days { get; set; }
         public List<TimetableEntry> currentSolution;
 
 
-        public Service(TeachersRepository teacherRepo, SubjectsRepository subjectRepo, RoomsRepository roomRepo,  TimeTableRepo orarRepo, int startTime, int endTime)
+        public Service(GroupsRepository groupsRepository, TeachersRepository teacherRepo, SubjectsRepository subjectRepo, RoomsRepository roomRepo,  TimeTableRepo orarRepo, int startTime, int endTime)
         {
             groupsRepository = groupsRepository;
             teachersRepository = teacherRepo;

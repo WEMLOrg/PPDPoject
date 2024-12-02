@@ -18,7 +18,6 @@ namespace TimeTableApp.Repository
             {
                 Console.WriteLine("File not found, creating one: " + filePath);
                 CreateDefaultGroupsFile(filePath);
-                return;
             }
             LoadData(filePath);
         }

@@ -1,19 +1,18 @@
-﻿<Teachers>
-	<Teacher Id="3aafba90-e84d-4cc7-b91c-2f92904556d5" Name="John Doe">
-		<Subjects>
-			<Subject SubjectId="e5e7c6b0-b8fa-4757-a0da-c149ae1c8392" />
-			<Subject SubjectId="e91e7c89-5b45-40be-b054-9945a14a2b59" />
-		</Subjects>
-	</Teacher>
-	<Teacher Id="b1c7e4da-2559-4b2b-93ba-aba22135d0da" Name="Jane Smith">
-		<Subjects>
-			<Subject SubjectId="ab6e0d9f-c9f8-4b77-b0a7-df84b124c8ea" />
-			<Subject SubjectId="f0f9e18c-3f0b-42a5-b91a-b3db1bb9f5b0" />
-		</Subjects>
-	</Teacher>
-	<Teacher Id="f0f9e18c-3f0b-42a5-b91a-b3db1bb9f5b0" Name="Michael Brown">
-		<Subjects>
-			<Subject SubjectId="cf84e9e9-f513-44f1-8910-8ea1b520f9b1" />
-		</Subjects>
-	</Teacher>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Teachers>
+  <Teacher Id="b9f7d214-bab4-46a9-95f2-2d8f1b08470e" Name="John Doe">
+    <Subjects>
+      <Subject Name="Mathematics" />
+    </Subjects>
+  </Teacher>
+  <Teacher Id="d2a5316b-7242-431b-9abf-289f4bb6f831" Name="Jane Smith">
+    <Subjects>
+      <Subject Name="Chemistry" />
+    </Subjects>
+  </Teacher>
+  <Teacher Id="f1d5a34b-497f-42d4-a72e-0198c1b40c29" Name="Alice Johnson">
+    <Subjects>
+      <Subject Name="Physics" />
+    </Subjects>
+  </Teacher>
 </Teachers>

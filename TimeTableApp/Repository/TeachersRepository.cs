@@ -17,7 +17,6 @@ namespace TimeTableApp.Repository
             {
                 Console.WriteLine("File not found: " + filePath);
                 CreateDefaultTeachersFile(filePath);
-                return;
             }
             LoadData(filePath);
         }
@@ -81,7 +80,7 @@ namespace TimeTableApp.Repository
                                 }
                             }
                         }
-                        Teacher teacher = new Teacher(teacherName, teacherSubjects){ _id = teacherId};
+                        Teacher teacher = new Teacher(teacherId, teacherName, teacherSubjects);
                         TeachersList.Add(teacher);
                     }
                 }
