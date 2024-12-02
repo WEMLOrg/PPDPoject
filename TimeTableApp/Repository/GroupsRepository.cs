@@ -123,12 +123,12 @@ namespace TimeTableApp.Repository
     XDocument xDocument = new XDocument(
         new XElement("Groups",
             new XElement("Group",
-                new XAttribute("Id", "f949b1f0-2718-487b-a1a0-c1b4729ac7a9"),  // Valid GUID for Group 1
+                new XAttribute("Id", "f949b1f0-2718-487b-a1a0-c1b4729ac7a9"),  
                 new XAttribute("NrOfKids", 30),
                 new XElement("NecessarySubjects",
                     new XElement("Subject",
-                        new XAttribute("SubjectId", "a1111111-1111-1111-1111-111111111111"), // Mathematics
-                        new XAttribute("TeacherId", "b9f7d214-bab4-46a9-95f2-2d8f1b08470e"), // Teacher John Doe
+                        new XAttribute("SubjectId", "a1111111-1111-1111-1111-111111111111"), 
+                        new XAttribute("TeacherId", "b9f7d214-bab4-46a9-95f2-2d8f1b08470e"), 
                         new XAttribute("Hours", 4)
                     ),
                     new XElement("Subject",
