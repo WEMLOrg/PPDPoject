@@ -29,7 +29,7 @@ namespace TimeTableApp.Repository
             );
 
             newDocument.Save(filePath);
-            Console.WriteLine("New Rooms.xml file created at: " + filePath);
+            Console.WriteLine("New Groups.xml file created at: " + filePath);
         }
         private string GenerateDefaultFilePath()
         {
@@ -132,19 +132,19 @@ namespace TimeTableApp.Repository
                         new XAttribute("Hours", 4)
                     ),
                     new XElement("Subject",
-                        new XAttribute("SubjectId", "a2222222-2222-2222-2222-222222222222"), // Chemistry
-                        new XAttribute("TeacherId", "d2a5316b-7242-431b-9abf-289f4bb6f831"), // Teacher Jane Smith
+                        new XAttribute("SubjectId", "a2222222-2222-2222-2222-222222222222"), 
+                        new XAttribute("TeacherId", "d2a5316b-7242-431b-9abf-289f4bb6f831"), 
                         new XAttribute("Hours", 3)
                     )
                 )
             ),
             new XElement("Group",
-                new XAttribute("Id", "c87c9e5b-3a5e-4f0e-badd-990396d12be7"),  // Valid GUID for Group 2
+                new XAttribute("Id", "c87c9e5b-3a5e-4f0e-badd-990396d12be7"),  
                 new XAttribute("NrOfKids", 25),
                 new XElement("NecessarySubjects",
                     new XElement("Subject",
-                        new XAttribute("SubjectId", "a3333333-3333-3333-3333-333333333333"), // Physics
-                        new XAttribute("TeacherId", "f1d5a34b-497f-42d4-a72e-0198c1b40c29"), // Teacher Alice Johnson
+                        new XAttribute("SubjectId", "a3333333-3333-3333-3333-333333333333"),
+                        new XAttribute("TeacherId", "f1d5a34b-497f-42d4-a72e-0198c1b40c29"),
                         new XAttribute("Hours", 5)
                     )
                 )

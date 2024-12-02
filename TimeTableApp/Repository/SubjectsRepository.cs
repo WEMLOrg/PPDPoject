@@ -28,7 +28,7 @@ namespace TimeTableApp.Repository
             );
 
             newDocument.Save(filePath);
-            Console.WriteLine("New Rooms.xml file created at: " + filePath);
+            Console.WriteLine("New Subjects.xml file created at: " + filePath);
         }
         private string GenerateDefaultFilePath()
         {

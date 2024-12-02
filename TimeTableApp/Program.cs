@@ -2,7 +2,6 @@
 
 namespace TimeTableApp
 {
-    //Generate a school timetable through exhaustive search.
     class Program
     {
         static void Main(string[] args)
@@ -19,7 +18,6 @@ namespace TimeTableApp
             service.BackTracking();
 
             timeTableRepo.PrintToCSV("result.csv");
-            Console.WriteLine("hel");
         }
     }
 }

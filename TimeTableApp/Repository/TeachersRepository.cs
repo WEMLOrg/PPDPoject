@@ -27,7 +27,7 @@ namespace TimeTableApp.Repository
             );
 
             newDocument.Save(filePath);
-            Console.WriteLine("New Rooms.xml file created at: " + filePath);
+            Console.WriteLine("New Teachers.xml file created at: " + filePath);
         }
 
         private string GenerateDefaultFilePath()
@@ -108,21 +108,21 @@ namespace TimeTableApp.Repository
             XDocument xDocument = new XDocument(
                 new XElement("Teachers",
                     new XElement("Teacher",
-                        new XAttribute("Id", "b9f7d214-bab4-46a9-95f2-2d8f1b08470e"),  // Teacher John Doe
+                        new XAttribute("Id", "b9f7d214-bab4-46a9-95f2-2d8f1b08470e"),   
                         new XAttribute("Name", "John Doe"),
                         new XElement("Subjects",
                             new XElement("Subject", new XAttribute("Name", "Mathematics"))
                         )
                     ),
                     new XElement("Teacher",
-                        new XAttribute("Id", "d2a5316b-7242-431b-9abf-289f4bb6f831"),  // Teacher Jane Smith
+                        new XAttribute("Id", "d2a5316b-7242-431b-9abf-289f4bb6f831"),  
                         new XAttribute("Name", "Jane Smith"),
                         new XElement("Subjects",
                             new XElement("Subject", new XAttribute("Name", "Chemistry"))
                         )
                     ),
                     new XElement("Teacher",
-                        new XAttribute("Id", "f1d5a34b-497f-42d4-a72e-0198c1b40c29"),  // Teacher Alice Johnson
+                        new XAttribute("Id", "f1d5a34b-497f-42d4-a72e-0198c1b40c29"),  
                         new XAttribute("Name", "Alice Johnson"),
                         new XElement("Subjects",
                             new XElement("Subject", new XAttribute("Name", "Physics"))
