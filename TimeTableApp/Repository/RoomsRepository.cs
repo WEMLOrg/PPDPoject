@@ -87,27 +87,27 @@ public class RoomsRepository
         XDocument xDocument = new XDocument(
             new XElement("Rooms",
                 new XElement("Room",
-                    new XAttribute("Id", "a16e8d98-5c24-4a37-824f-2dcfb5f246a3"),
+                    new XAttribute("Id", "a1111111-1111-1111-1111-111111111111"),
                     new XAttribute("Cap", 30)
                 ),
                 new XElement("Room",
-                    new XAttribute("Id", "b59f16b7-e30c-4cde-8a3c-1f239fb367de"),
+                    new XAttribute("Id", "b2222222-2222-2222-2222-222222222222"),
                     new XAttribute("Cap", 50)
                 ),
                 new XElement("Room",
-                    new XAttribute("Id", "c4038de8-a58e-46bc-8247-6a3e9ecf8471"),
+                    new XAttribute("Id", "c3333333-3333-3333-3333-333333333333"),
                     new XAttribute("Cap", 100)
                 ),
                 new XElement("Room",
-                    new XAttribute("Id", "g9038de8-a58e-46bc-8247-6a3e9ecf8471"),
+                    new XAttribute("Id", "g4444444-4444-4444-4444-444444444444"),
                     new XAttribute("Cap", 100)
                 ),
                 new XElement("Room",
-                    new XAttribute("Id", "m4038de8-a58e-46bc-8247-6m3e9ecf8471"),
+                    new XAttribute("Id", "m5555555-5555-5555-5555-555555555555"),
                     new XAttribute("Cap", 100)
                 ),
                 new XElement("Room",
-                    new XAttribute("Id", "k4038de8-a58e-46bk-8247-6a3e9ecf8471"),
+                    new XAttribute("Id", "k6666666-6666-6666-6666-666666666666"),
                     new XAttribute("Cap", 100)
                 )
             )
@@ -123,5 +123,6 @@ public class RoomsRepository
             Console.WriteLine("An error occurred while creating the default rooms file: " + ex.Message);
         }
     }
+
 
  }
