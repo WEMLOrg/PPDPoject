@@ -132,7 +132,7 @@ namespace TimeTableApp.Repository
                         new XAttribute("Id", "f949b1f0-2718-487b-a1a0-c1b4729ac7a9"),
                         new XAttribute("NrOfKids", "30"),
                         new XElement("NecessarySubjects",
-                            new XElement("Subject", new XAttribute("SubjectId", "a1111111-1111-1111-1111-111111111111"), new XAttribute("TeacherId", "b9f7d214-bab4-46a9-95f2-2d8f1b08470e"), new XAttribute("Hours", "1")),
+                            new XElement("Subject", new XAttribute("SubjectId", "a1111111-1111-1111-1111-111111111111"), new XAttribute("TeacherId", "a1111111-1111-1111-1111-111111111111"), new XAttribute("Hours", "1")),
                             new XElement("Subject", new XAttribute("SubjectId", "a2222222-2222-2222-2222-222222222222"), new XAttribute("TeacherId", "d2a5316b-7242-431b-9abf-289f4bb6f831"), new XAttribute("Hours", "1")),
                             new XElement("Subject", new XAttribute("SubjectId", "a3333333-3333-3333-3333-333333333333"), new XAttribute("TeacherId", "f1d5a34b-497f-42d4-a72e-0198c1b40c29"), new XAttribute("Hours", "1")),
                             new XElement("Subject", new XAttribute("SubjectId", "a4444444-4444-4444-4444-444444444444"), new XAttribute("TeacherId", "g1234567-8901-2345-6789-012345678901"), new XAttribute("Hours", "1")),
