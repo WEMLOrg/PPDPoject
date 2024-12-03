@@ -16,7 +16,7 @@ namespace TimeTableApp
         public List<TimetableEntry> currentSolution;
 
 
-        public Service(GroupsRepository groupsRepository, TeachersRepository teacherRepo, SubjectsRepository subjectRepo, RoomsRepository roomRepo,  TimeTableRepo orarRepo, int startTime, int endTime)
+        public Service(GroupsRepository groupsRepository, TeachersRepository teacherRepo, SubjectsRepository subjectRepo, RoomsRepository roomRepo, TimeTableRepo orarRepo, int startTime, int endTime)
         {
             groupsRepository = groupsRepository;
             teachersRepository = teacherRepo;
@@ -82,77 +82,77 @@ namespace TimeTableApp
         //         }
         //     }
         // }
-        
-        
-        public void BackTracking()
-{
-    Console.WriteLine("Back tracking");
-    if (isCompleteSolution(currentSolution))
-    {
-        foreach (var entry in currentSolution)
-        {
-            timeTableRepo.AddEntry(entry);
-        }
-        return;
-    }
 
-    var subjects = subjectsRepository.GetSubjects();
-    var rooms = roomsRepository.GetRooms();
-    var teachers = teachersRepository.GetTeachers();
-    var groups = groupsRepository.GetGroups();
 
-    while (subjects.Any() && rooms.Any() && teachers.Any() && groups.Any())
-    {
-        var subject = subjects.First();
-        var room = rooms.First();
-        var teacher = teachers.First();
-        var group = groups.First();
+        //        public void BackTracking()
+        //{
+        //    Console.WriteLine("Back tracking");
+        //    if (isCompleteSolution(currentSolution))
+        //    {
+        //        foreach (var entry in currentSolution)
+        //        {
+        //            timeTableRepo.AddEntry(entry);
+        //        }
+        //        return;
+        //    }
 
-        // Find a valid day combination
-        var validDays = days.Where(d => isValid(group, room, teacher, subject, 8, d)).ToList();
+        //    var subjects = subjectsRepository.GetSubjects();
+        //    var rooms = roomsRepository.GetRooms();
+        //    var teachers = teachersRepository.GetTeachers();
+        //    var groups = groupsRepository.GetGroups();
 
-        if (!validDays.Any())
-        {
-            subjects.RemoveAt(0);
-            rooms.RemoveAt(0);
-            teachers.RemoveAt(0);
-            groups.RemoveAt(0);
-            continue;
-        }
+        //    while (subjects.Any() && rooms.Any() && teachers.Any() && groups.Any())
+        //    {
+        //        var subject = subjects.First();
+        //        var room = rooms.First();
+        //        var teacher = teachers.First();
+        //        var group = groups.First();
 
-        // Try each valid day
-        foreach (TimetableEntry.Days day in validDays)
-        {
-            // Try each possible time slot (8:00-9:30, 9:30-11:00, etc.)
-            for (int hour = startTime; hour <= endTime; hour++)
-            {
-                if (isValid(group, room, teacher, subject, hour, day))
-                {
-                    TimetableEntry validEntry =
-                        new TimetableEntry(teacher, subject, group, room, day, hour);
+        //        // Find a valid day combination
+        //        var validDays = days.Where(d => isValid(group, room, teacher, subject, 8, d)).ToList();
 
-                    // Check if this time slot is already used by this teacher for this subject
-                    var conflictingEntry = currentSolution.FirstOrDefault(e => 
-                        e.teacher == teacher && e.subject == subject && e.day == day && e.hour >= hour && e.hour < (hour + 2));
+        //        if (!validDays.Any())
+        //        {
+        //            subjects.RemoveAt(0);
+        //            rooms.RemoveAt(0);
+        //            teachers.RemoveAt(0);
+        //            groups.RemoveAt(0);
+        //            continue;
+        //        }
 
-                    if (conflictingEntry != null)
-                    {
-                        continue; // Skip this combination as it conflicts with another entry
-                    }
+        //        // Try each valid day
+        //        foreach (TimetableEntry.Days day in validDays)
+        //        {
+        //            // Try each possible time slot (8:00-9:30, 9:30-11:00, etc.)
+        //            for (int hour = startTime; hour <= endTime; hour++)
+        //            {
+        //                if (isValid(group, room, teacher, subject, hour, day))
+        //                {
+        //                    TimetableEntry validEntry =
+        //                        new TimetableEntry(teacher, subject, group, room, day, hour);
 
-                    currentSolution.Add(validEntry);
-                    BackTracking();
-                    currentSolution.RemoveAt(currentSolution.Count - 1);
-                }
-            }
-        }
+        //                    // Check if this time slot is already used by this teacher for this subject
+        //                    var conflictingEntry = currentSolution.FirstOrDefault(e => 
+        //                        e.teacher == teacher && e.subject == subject && e.day == day && e.hour >= hour && e.hour < (hour + 2));
 
-        subjects.RemoveAt(0);
-        rooms.RemoveAt(0);
-        teachers.RemoveAt(0);
-        groups.RemoveAt(0);
-    }
-}
+        //                    if (conflictingEntry != null)
+        //                    {
+        //                        continue; // Skip this combination as it conflicts with another entry
+        //                    }
+
+        //                    currentSolution.Add(validEntry);
+        //                    BackTracking();
+        //                    currentSolution.RemoveAt(currentSolution.Count - 1);
+        //                }
+        //            }
+        //        }
+
+        //        subjects.RemoveAt(0);
+        //        rooms.RemoveAt(0);
+        //        teachers.RemoveAt(0);
+        //        groups.RemoveAt(0);
+        //    }
+        //}
 
 
         public bool doesGroupFitInRoom(Room r, Group g)
@@ -161,182 +161,357 @@ namespace TimeTableApp
                 return true;
             return false;
         }
-        public bool isRoomAvailable(Room r, TimetableEntry.Days day, int hour)
-        {
-            foreach(TimetableEntry te in currentSolution)
-            {
-                if (te.day == day) 
-                    if (te.hour == hour)
-                        if (te.room == r)
-                            return false;
-            }
-            return true;
-        }
-        public bool isSolution(TimetableEntry t) 
-        {
-            foreach (TimetableEntry te in currentSolution)
-            {
-                if (te == t)
-                    return false;
-                if (te.hour == t.hour && te.day == t.day)
-                {
-                    if (te.teacher == t.teacher || te.group == t.group || te.room == t.room)
-                        return false;
-                }
-            }
+        //        public bool isRoomAvailable(Room r, TimetableEntry.Days day, int hour)
+        //        {
+        //            foreach(TimetableEntry te in currentSolution)
+        //            {
+        //                if (te.day == day) 
+        //                    if (te.hour == hour)
+        //                        if (te.room == r)
+        //                            return false;
+        //            }
+        //            return true;
+        //        }
+        //        public bool isSolution(TimetableEntry t) 
+        //        {
+        //            foreach (TimetableEntry te in currentSolution)
+        //            {
+        //                if (te == t)
+        //                    return false;
+        //                if (te.hour == t.hour && te.day == t.day)
+        //                {
+        //                    if (te.teacher == t.teacher || te.group == t.group || te.room == t.room)
+        //                        return false;
+        //                }
+        //            }
 
-            return true;
-        }
+        //            return true;
+        //        }
 
-        // public bool doesGroupHaveAlreadyEnoughHoursForSubject(Subject s, Group g, Teacher t)
-        // {
-        //     if (g.doesGroupHaveSubject(s._id, t._id))
-        //     {
-        //         int necessaryHours = g.necessarySubjects.GetValueOrDefault(new KeyValuePair<Guid, Guid>(s._id, t._id));
-        //         foreach (TimetableEntry te in currentSolution)
-        //         {
-        //             if (necessaryHours == 0)
-        //                 return true;
-        //             if (te.subject == s && te.group == g)
-        //                 necessaryHours--;
-        //         }
-        //
-        //         if (necessaryHours == 0)
-        //             return true;
-        //     }
-        //
-        //     return false;
-        // }
+        //        // public bool doesGroupHaveAlreadyEnoughHoursForSubject(Subject s, Group g, Teacher t)
+        //        // {
+        //        //     if (g.doesGroupHaveSubject(s._id, t._id))
+        //        //     {
+        //        //         int necessaryHours = g.necessarySubjects.GetValueOrDefault(new KeyValuePair<Guid, Guid>(s._id, t._id));
+        //        //         foreach (TimetableEntry te in currentSolution)
+        //        //         {
+        //        //             if (necessaryHours == 0)
+        //        //                 return true;
+        //        //             if (te.subject == s && te.group == g)
+        //        //                 necessaryHours--;
+        //        //         }
+        //        //
+        //        //         if (necessaryHours == 0)
+        //        //             return true;
+        //        //     }
+        //        //
+        //        //     return false;
+        //        // }
         public bool isSpecificRoomNeeded(Subject s)
         {
             if (s.specificRoom)
                 return true;
             return false;
         }
-        // public bool isValid(Group g, Room r, Teacher t, Subject s, int h, TimetableEntry.Days d) 
-        // {
-        //     Console.WriteLine($"Checking validity for Group: {g._id}, Subject: {s.name}, Teacher: {t.teacherName}, Room: {r._id}, Hour: {h}, Day: {d}");
-        //     if (doesGroupFitInRoom(r, g) &&
-        //         g.doesGroupHaveSubject(s._id, t._id) &&
-        //         t.DoesTeacherTeachSubject(s._id) &&
-        //         isRoomAvailable(r, d, h) &&
-        //         !doesGroupHaveAlreadyEnoughHoursForSubject(s, g, t) &&
-        //         !isTeacherAlreadyTeachingSubjectOnDay(t, s, d)
-        //         && !isHoursExceededForSubject(t, g, s))
-        //     {
-        //         if (isSpecificRoomNeeded(s))
-        //         {
-        //             if (r._id != s.roomId)
-        //             {
-        //                 return false;
-        //             }
-        //             else
-        //                 return true;
-        //         }
-        //         else
-        //         {
-        //             return true;
-        //         }
-        //         
-        //     }
-        //     
-        //     return false;
-        //
-        // }
-        
-        public bool isValid(Group group, Room room, Teacher teacher, Subject subject, int hour, TimetableEntry.Days day)
+        //        // public bool isValid(Group g, Room r, Teacher t, Subject s, int h, TimetableEntry.Days d) 
+        //        // {
+        //        //     Console.WriteLine($"Checking validity for Group: {g._id}, Subject: {s.name}, Teacher: {t.teacherName}, Room: {r._id}, Hour: {h}, Day: {d}");
+        //        //     if (doesGroupFitInRoom(r, g) &&
+        //        //         g.doesGroupHaveSubject(s._id, t._id) &&
+        //        //         t.DoesTeacherTeachSubject(s._id) &&
+        //        //         isRoomAvailable(r, d, h) &&
+        //        //         !doesGroupHaveAlreadyEnoughHoursForSubject(s, g, t) &&
+        //        //         !isTeacherAlreadyTeachingSubjectOnDay(t, s, d)
+        //        //         && !isHoursExceededForSubject(t, g, s))
+        //        //     {
+        //        //         if (isSpecificRoomNeeded(s))
+        //        //         {
+        //        //             if (r._id != s.roomId)
+        //        //             {
+        //        //                 return false;
+        //        //             }
+        //        //             else
+        //        //                 return true;
+        //        //         }
+        //        //         else
+        //        //         {
+        //        //             return true;
+        //        //         }
+        //        //         
+        //        //     }
+        //        //     
+        //        //     return false;
+        //        //
+        //        // }
+
+        //        public bool isValid(Group group, Room room, Teacher teacher, Subject subject, int hour, TimetableEntry.Days day)
+        //        {
+        //            if (!doesGroupFitInRoom(room, group))
+        //                return false;
+
+        //            if (!group.doesGroupHaveSubject(subject._id, teacher._id))
+        //                return false;
+
+        //            if (!teacher.DoesTeacherTeachSubject(subject._id))
+        //                return false;
+
+        //            if (!isRoomAvailable(room, day, hour))
+        //                return false;
+
+        //            if (doesGroupHaveAlreadyEnoughHoursForSubject(subject, group, teacher))
+        //                return false;
+
+        //            if (isTeacherAlreadyTeachingSubjectOnDay(teacher, subject, day))
+        //                return false;
+
+        //            if (isHoursExceededForSubject(teacher, group, subject))
+        //                return false;
+
+        //            if (isSpecificRoomNeeded(subject) && room._id != subject.roomId)
+        //                return false;
+
+        //            return true;
+        //        }
+
+
+
+        //        public bool isTeacherAlreadyTeachingSubjectOnDay(Teacher t, Subject s, TimetableEntry.Days day)
+        //        {
+        //            foreach (TimetableEntry entry in currentSolution)
+        //            {
+        //                if (entry.teacher == t && entry.subject == s && entry.day == day)
+        //                {
+        //                    return true;
+        //                }
+        //            }
+        //            return false;
+        //        }
+
+        //        private bool doesGroupHaveAlreadyEnoughHoursForSubject(Subject subject, Group group, Teacher teacher)
+        //        {
+        //            var requiredHours = group.GetRequiredHoursForSubject(subject._id, teacher._id);
+        //            var scheduledHours = currentSolution.Count(entry => entry.subject == subject && entry.group == group);
+
+        //            return scheduledHours >= requiredHours;
+        //        }
+
+        //        private bool isHoursExceededForSubject(Teacher teacher, Group group, Subject subject)
+        //        {
+        //            int totalScheduledHours = currentSolution.Count(entry => entry.teacher == teacher && entry.subject == subject);
+
+        //            int requiredHours = group.GetRequiredHoursForSubject(subject._id, teacher._id);
+
+        //            return totalScheduledHours > requiredHours;
+        //        }
+
+
+
+
+        //        private bool isCompleteSolution(List<TimetableEntry> currentSolution)
+        //        {
+        //            if (currentSolution.Count == 0)
+        //                return false;
+        //            foreach (Group group in groupsRepository.GetGroups())
+        //            {
+        //                foreach (Subject subject in subjectsRepository.GetSubjects())
+        //                {
+        //                    var assignedTeachers = currentSolution
+        //                        .Where(entry => entry.group == group && entry.subject == subject)
+        //                        .Select(entry => entry.teacher)
+        //                        .Distinct();
+
+        //                    foreach (Teacher teacher in assignedTeachers)
+        //                    {
+        //                        int requiredHours = group.GetRequiredHoursForSubject(subject._id, teacher._id);
+
+        //                        int scheduledHours = currentSolution
+        //                            .Count(entry => entry.group == group && entry.subject == subject && entry.teacher == teacher);
+
+        //                        if (scheduledHours < requiredHours)
+        //                        {
+        //                            Console.WriteLine("not complete sol " + scheduledHours + ' '+ requiredHours);
+        //                            return false; 
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //            return true; 
+        //        }
+
+        //    }
+
+        public void GenerateTimetable()
         {
-            if (!doesGroupFitInRoom(room, group))
-                return false;
-
-            if (!group.doesGroupHaveSubject(subject._id, teacher._id))
-                return false;
-
-            if (!teacher.DoesTeacherTeachSubject(subject._id))
-                return false;
-
-            if (!isRoomAvailable(room, day, hour))
-                return false;
-
-            if (doesGroupHaveAlreadyEnoughHoursForSubject(subject, group, teacher))
-                return false;
-
-            if (isTeacherAlreadyTeachingSubjectOnDay(teacher, subject, day))
-                return false;
-
-            if (isHoursExceededForSubject(teacher, group, subject))
-                return false;
-
-            if (isSpecificRoomNeeded(subject) && room._id != subject.roomId)
-                return false;
-
-            return true;
+            BackTracking(0);
         }
 
-
-        
-        public bool isTeacherAlreadyTeachingSubjectOnDay(Teacher t, Subject s, TimetableEntry.Days day)
+        public bool BackTracking(int index)
         {
-            foreach (TimetableEntry entry in currentSolution)
+            if (index == groupsRepository.GetGroups().Count)
             {
-                if (entry.teacher == t && entry.subject == s && entry.day == day)
+                if (isCompleteSolution(currentSolution))
                 {
+                    foreach (var entry in currentSolution)
+                    {
+                        timeTableRepo.AddEntry(entry); // Save the solution
+                    }
                     return true;
                 }
-            }
-            return false;
-        }
-        
-        private bool doesGroupHaveAlreadyEnoughHoursForSubject(Subject subject, Group group, Teacher teacher)
-        {
-            var requiredHours = group.GetRequiredHoursForSubject(subject._id, teacher._id);
-            var scheduledHours = currentSolution.Count(entry => entry.subject == subject && entry.group == group);
-
-            return scheduledHours >= requiredHours;
-        }
-
-        private bool isHoursExceededForSubject(Teacher teacher, Group group, Subject subject)
-        {
-            int totalScheduledHours = currentSolution.Count(entry => entry.teacher == teacher && entry.subject == subject);
-
-            int requiredHours = group.GetRequiredHoursForSubject(subject._id, teacher._id);
-
-            return totalScheduledHours > requiredHours;
-        }
-
-        
-
-        
-        private bool isCompleteSolution(List<TimetableEntry> currentSolution)
-        {
-            if (currentSolution.Count == 0)
                 return false;
-            foreach (Group group in groupsRepository.GetGroups())
+            }
+
+            var groups = groupsRepository.GetGroups();
+            var group = groups[index]; // Process current group
+
+            foreach (var subject in subjectsRepository.GetSubjects())
             {
-                foreach (Subject subject in subjectsRepository.GetSubjects())
+                foreach (var teacher in teachersRepository.GetTeachers())
                 {
-                    var assignedTeachers = currentSolution
-                        .Where(entry => entry.group == group && entry.subject == subject)
-                        .Select(entry => entry.teacher)
-                        .Distinct();
-
-                    foreach (Teacher teacher in assignedTeachers)
+                    if (!group.doesGroupHaveSubject(subject._id, teacher._id))
                     {
-                        int requiredHours = group.GetRequiredHoursForSubject(subject._id, teacher._id);
+                        //Console.WriteLine($"Group {group._id} cannot have subject {subject._id}");
+                        continue;
+                    }
+                    if (!teacher.DoesTeacherTeachSubject(subject._id))
+                    {
+                        //Console.WriteLine($"Teacher {teacher.teacherName} cannot teach subject {subject._id}");
+                        continue;
+                    }
 
-                        int scheduledHours = currentSolution
-                            .Count(entry => entry.group == group && entry.subject == subject && entry.teacher == teacher);
+                    foreach (var room in roomsRepository.GetRooms())
+                    {
+                        if (!doesGroupFitInRoom(room, group)) continue;
+                        if (isSpecificRoomNeeded(subject) && room._id != subject.roomId) continue;
 
-                        if (scheduledHours < requiredHours)
+                        foreach (var day in days)
                         {
-                            Console.WriteLine("not complete sol " + scheduledHours + ' '+ requiredHours);
-                            return false; 
+                            for (int hour = startTime; hour < endTime; hour++)
+                            {
+                                //Console.WriteLine($"Checking hour {hour}, day {day}, subject {subject._id}, teacher {teacher.teacherName}, room {room._id}, group {group._id}");
+                                if (isValid(group, room, teacher, subject, hour, day))
+                                {
+                                    var timetableEntry = new TimetableEntry(teacher, subject, group, room, day, hour);
+                                    currentSolution.Add(timetableEntry);
+
+                                    if (BackTracking(index + 1)) return true;
+
+                                    currentSolution.RemoveAt(currentSolution.Count - 1);
+                                }
+                            }
                         }
                     }
                 }
             }
-            return true; 
+
+            return false;
         }
 
-    }
+        public bool isTeacherAlreadyTeachingSubjectOnDay(Teacher teacher, Subject subject, TimetableEntry.Days day)
+        {
+            return currentSolution.Any(entry =>
+                entry.teacher == teacher &&
+                entry.subject == subject &&
+                entry.day == day);
+        }
+        public bool isHoursExceededForSubject(Teacher teacher, Group group, Subject subject)
+        {
+            int requiredHours = group.GetRequiredHoursForSubject(subject._id, teacher._id);
+            int scheduledHours = currentSolution
+                .Where(entry => entry.teacher == teacher && entry.group == group && entry.subject == subject)
+                .Count();
+
+            return scheduledHours >= requiredHours;
+        }
+
+        public bool isValid(Group group, Room room, Teacher teacher, Subject subject, int hour, TimetableEntry.Days day)
+        {
+            if (!doesGroupFitInRoom(room, group))
+            {
+               // Console.WriteLine($"Group {group._id} doesn't fit in room {room._id}.");
+                return false;
+            }
+
+            if (!group.doesGroupHaveSubject(subject._id, teacher._id))
+            {
+               // Console.WriteLine($"Group {group._id} doesn't have subject {subject._id} for teacher {teacher.teacherName}.");
+                return false;
+            }
+
+            if (!teacher.DoesTeacherTeachSubject(subject._id))
+            {
+                //Console.WriteLine($"Teacher {teacher.teacherName} can't teach subject {subject._id}.");
+                return false;
+            }
+                if (!isRoomAvailable(room, day, hour))
+                {
+                   // Console.WriteLine($"Room {room._id} is not available at hour {hour} on day {day}.");
+                    return false;
+                }
+
+                if (doesGroupHaveAlreadyEnoughHoursForSubject(subject, group, teacher))
+                {
+                    //Console.WriteLine($"Group {group._id} already has enough hours for subject {subject._id}.");
+                    return false;
+                }
+
+                if (isTeacherAlreadyTeachingSubjectOnDay(teacher, subject, day))
+                {
+                    //Console.WriteLine($"Teacher {teacher.teacherName} is already teaching subject {subject._id} on day {day}.");
+                    return false;
+                }
+
+                if (isHoursExceededForSubject(teacher, group, subject))
+                {
+                   // Console.WriteLine($"Teacher {teacher.teacherName} has exceeded the hours for subject {subject._id}.");
+                    return false;
+                }
+
+                if (isSpecificRoomNeeded(subject) && room._id != subject.roomId)
+                {
+                    //Console.WriteLine($"Subject {subject._id} requires a specific room {subject.roomId}, not room {room._id}.");
+                    return false;
+                }
+
+                return true;
+            }
+
+            private bool isCompleteSolution(List<TimetableEntry> currentSolution)
+            {
+                foreach (var group in groupsRepository.GetGroups())
+                {
+                    foreach (var subject in subjectsRepository.GetSubjects())
+                    {
+                        var assignedTeachers = currentSolution
+                            .Where(entry => entry.group == group && entry.subject == subject)
+                            .Select(entry => entry.teacher)
+                            .Distinct();
+
+                        foreach (var teacher in assignedTeachers)
+                        {
+                            int requiredHours = group.GetRequiredHoursForSubject(subject._id, teacher._id);
+                            int scheduledHours = currentSolution
+                                .Count(entry => entry.group == group && entry.subject == subject && entry.teacher == teacher);
+
+                            if (scheduledHours < requiredHours)
+                                return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            public bool isRoomAvailable(Room room, TimetableEntry.Days day, int hour)
+            {
+                return !currentSolution.Any(te => te.room == room && te.day == day && te.hour == hour);
+            }
+            public bool doesGroupHaveAlreadyEnoughHoursForSubject(Subject subject, Group group, Teacher teacher)
+            {
+                int requiredHours = group.GetRequiredHoursForSubject(subject._id, teacher._id);
+                int scheduledHours = currentSolution
+                    .Count(te => te.subject == subject && te.group == group && te.teacher == teacher);
+
+                return scheduledHours >= requiredHours;
+            }
+
+        }
+    
 }

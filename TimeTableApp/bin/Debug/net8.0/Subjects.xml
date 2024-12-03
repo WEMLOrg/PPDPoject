@@ -1,2 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Subjects />
+<Subjects>
+  <Subject Id="a1111111-1111-1111-1111-111111111111" Name="Mathematics" SpecificRoom="false" RoomId="a16e8d98-5c24-4a37-824f-2dcfb5f246a3" />
+  <Subject Id="a2222222-2222-2222-2222-222222222222" Name="Chemistry" SpecificRoom="true" RoomId="b59f16b7-e30c-4cde-8a3c-1f239fb367de" />
+  <Subject Id="a3333333-3333-3333-3333-333333333333" Name="Physics" SpecificRoom="false" RoomId="c4038de8-a58e-46bc-8247-6a3e9ecf8471" />
+  <Subject Id="a4444444-4444-4444-4444-444444444444" Name="English" SpecificRoom="false" RoomId="d5f12345-6e78-4f9a-8b2c-1a2b3c4d5e6f" />
+  <Subject Id="a5555555-5555-5555-5555-555555555555" Name="Biology" SpecificRoom="true" RoomId="e67890ab-cdef-1234-5678-9abcdef12345" />
+  <Subject Id="a6666666-6666-6666-6666-666666666666" Name="History" SpecificRoom="false" RoomId="f09876ab-cdef-4321-8765-432109876543" />
+  <Subject Id="a7777777-7777-7777-7777-777777777777" Name="Geography" SpecificRoom="false" RoomId="g12345ab-cdef-5678-9876-543210abcdef" />
+  <Subject Id="a8888888-8888-8888-8888-888888888888" Name="Art" SpecificRoom="true" RoomId="h98765ab-cdef-8765-5432-123456789abc" />
+  <Subject Id="a9999999-9999-9999-9999-999999999999" Name="Music" SpecificRoom="false" RoomId="i87654ab-cdef-4321-1234-abcdef567890" />
+  <Subject Id="b1111111-1111-1111-1111-111111111111" Name="Philosophy" SpecificRoom="false" RoomId="j76543ab-cdef-9876-5432-abcdef123456" />
+  <Subject Id="b2222222-2222-2222-2222-222222222222" Name="Computer Science" SpecificRoom="true" RoomId="k65432ab-cdef-5432-8765-abcdef987654" />
+  <Subject Id="b3333333-3333-3333-3333-333333333333" Name="Physical Education" SpecificRoom="true" RoomId="l54321ab-cdef-6789-5432-abcdef432109" />
+</Subjects>
