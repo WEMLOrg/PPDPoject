@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Rooms>
-  <Room Id="a16e8d98-5c24-4a37-824f-2dcfb5f246a3" Cap="30" />
-  <Room Id="b59f16b7-e30c-4cde-8a3c-1f239fb367de" Cap="50" />
-  <Room Id="c4038de8-a58e-46bc-8247-6a3e9ecf8471" Cap="100" />
-  <Room Id="g9038de8-a58e-46bc-8247-6a3e9ecf8471" Cap="100" />
-  <Room Id="m4038de8-a58e-46bc-8247-6m3e9ecf8471" Cap="100" />
-  <Room Id="k4038de8-a58e-46bk-8247-6a3e9ecf8471" Cap="100" />
-</Rooms>

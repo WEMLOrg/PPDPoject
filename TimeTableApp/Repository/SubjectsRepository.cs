@@ -48,13 +48,15 @@ namespace TimeTableApp.Repository
                 {
                     foreach (var elem in root.Elements("Subject"))
                     {
+                        
                         Guid id;
                         string name = (string)elem.Attribute("Name");
                         bool specificRoom = false;
                         Guid roomId = Guid.Empty;
-
+                       // Console.WriteLine("in for : "+ name);
                         if (!Guid.TryParse((string)elem.Attribute("Id"), out id))
                         {
+                           // Console.WriteLine("Subject in if1: " + id);
                             continue;
                         }
                         var specificRoomAttribute = elem.Attribute("SpecificRoom");
@@ -64,6 +66,7 @@ namespace TimeTableApp.Repository
                         }
                         if (!Guid.TryParse((string)elem.Attribute("RoomId"), out roomId))
                         {
+                           // Console.WriteLine("Subject in if2: " + roomId);
                             continue;
                         }
                         Subject s;
@@ -169,19 +172,19 @@ namespace TimeTableApp.Repository
                 new XAttribute("Id", "a4444444-4444-4444-4444-444444444444"),
                 new XAttribute("Name", "English"),
                 new XAttribute("SpecificRoom", "false"),
-                new XAttribute("RoomId", "g4444444-4444-4444-4444-444444444444") // Matches Room ID
+                new XAttribute("RoomId", "a1111111-1111-1111-1111-111111111112") // Matches Room ID
             ),
             new XElement("Subject",
                 new XAttribute("Id", "a5555555-5555-5555-5555-555555555555"),
                 new XAttribute("Name", "Biology"),
                 new XAttribute("SpecificRoom", "true"),
-                new XAttribute("RoomId", "m5555555-5555-5555-5555-555555555555") // Matches Room ID
+                new XAttribute("RoomId", "b2222222-2222-2222-2222-222222222223") // Matches Room ID
             ),
             new XElement("Subject",
                 new XAttribute("Id", "a6666666-6666-6666-6666-666666666666"),
                 new XAttribute("Name", "History"),
                 new XAttribute("SpecificRoom", "false"),
-                new XAttribute("RoomId", "k6666666-6666-6666-6666-666666666666") // Matches Room ID
+                new XAttribute("RoomId", "c3333333-3333-3333-3333-333333333334") // Matches Room ID
             )
         )
     );

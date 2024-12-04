@@ -66,7 +66,6 @@ namespace TimeTableApp.Repository
                         XElement subjectsElement = elem.Element("NecessarySubjects");
                         if (subjectsElement != null && subjectsElement.HasElements)
                         {
-                            Console.WriteLine("aaa " + subjectsElement);
                             foreach (var subjectElem in subjectsElement.Elements("Subject"))
                             {
                                 Guid subjectId, teacherId;
@@ -74,21 +73,17 @@ namespace TimeTableApp.Repository
 
                                 if (!Guid.TryParse((string)subjectElem.Attribute("SubjectId"), out subjectId))
                                 {
-                                    Console.WriteLine("aaaIf1 " + subjectsElement);
                                     continue;
                                 }
                                 if (!Guid.TryParse((string)subjectElem.Attribute("TeacherId"), out teacherId))
                                 {
-                                    Console.WriteLine($"Invalid TeacherId: {teacherId}");
                                     continue;
                                 }
                                 if (!int.TryParse((string)subjectElem.Attribute("Hours"), out hours))
                                 {
-                                    Console.WriteLine("aaaIf3 " + subjectsElement);
                                     continue;
                                 }
 
-                                Console.WriteLine("Group " + id + " are subject " + subjectId + " cu teacher " + teacherId + " cu hours " + hours);
                                 necessarySubjects[new KeyValuePair<Guid, Guid>(subjectId, teacherId)] = hours;
 
                             }

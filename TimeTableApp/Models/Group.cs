@@ -19,6 +19,11 @@ namespace TimeTableApp
             return necessarySubjects.ContainsKey(new KeyValuePair<Guid, Guid>(subject, teacher));
         }
 
+        public bool doesGroupHaveSubject(Guid subject)
+        {
+            return necessarySubjects.Keys.Any(key => key.Key == subject);
+        }
+
         public static bool operator ==(Group t1, Group t2)
         {
             if (ReferenceEquals(t1, t2)) return true;

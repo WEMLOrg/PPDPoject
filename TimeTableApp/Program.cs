@@ -16,7 +16,10 @@ namespace TimeTableApp
             
             Service service = new Service(groupsRepository, teachersRepository, subjectsRepository, roomsRepository, timeTableRepo, startTime, endTime);
             //service.BackTracking();
-            service.GenerateTimetable();
+            //service.GenerateTimetable();
+            TimeTableGenerator generator = new TimeTableGenerator(teachersRepository, subjectsRepository,
+                roomsRepository, groupsRepository, timeTableRepo);
+            generator.GenerateTimetable();
             timeTableRepo.PrintToCSV("result.csv");
         }
     }
