@@ -109,6 +109,14 @@ public class RoomsRepository
                 new XElement("Room",
                     new XAttribute("Id", "c3333333-3333-3333-3333-333333333334"),
                     new XAttribute("Cap", 100)
+                ),
+                new XElement("Room",
+                    new XAttribute("Id", "d1111111-1111-1111-1111-111111111111"),
+                    new XAttribute("Cap", 100)
+                ),
+                new XElement("Room",
+                    new XAttribute("Id", "d1111111-1111-1111-1111-111111111112"),
+                    new XAttribute("Cap", 100)
                 )
             )
         );

@@ -160,13 +160,13 @@ namespace TimeTableApp.Repository
                 new XAttribute("Id", "a2222222-2222-2222-2222-222222222222"),
                 new XAttribute("Name", "Chemistry"),
                 new XAttribute("SpecificRoom", "true"),
-                new XAttribute("RoomId", "b2222222-2222-2222-2222-222222222222") // Matches Room ID
+                new XAttribute("RoomId", "b2222222-2222-2222-2222-222222222222") 
             ),
             new XElement("Subject",
                 new XAttribute("Id", "a3333333-3333-3333-3333-333333333333"),
                 new XAttribute("Name", "Physics"),
-                new XAttribute("SpecificRoom", "false"),
-                new XAttribute("RoomId", "c3333333-3333-3333-3333-333333333333") // Matches Room ID
+                new XAttribute("SpecificRoom", "true"),
+                new XAttribute("RoomId", "c3333333-3333-3333-3333-333333333333") 
             ),
             new XElement("Subject",
                 new XAttribute("Id", "a4444444-4444-4444-4444-444444444444"),
@@ -185,7 +185,45 @@ namespace TimeTableApp.Repository
                 new XAttribute("Name", "History"),
                 new XAttribute("SpecificRoom", "false"),
                 new XAttribute("RoomId", "c3333333-3333-3333-3333-333333333334") // Matches Room ID
+            ),
+            new XElement("Subject",
+                new XAttribute("Id", "a7777777-7777-7777-7777-777777777777"),
+                new XAttribute("Name", "Geography"),
+                new XAttribute("SpecificRoom", "false"),
+                new XAttribute("RoomId", "b2222222-2222-2222-2222-222222222223") // Matches Room ID
+            ),
+            new XElement("Subject",
+                new XAttribute("Id", "a8888888-8888-8888-8888-888888888888"),
+                new XAttribute("Name", "German"),
+                new XAttribute("SpecificRoom", "false"),
+                new XAttribute("RoomId", "b2222222-2222-2222-2222-222222222222") // Matches Room ID
+            ),
+            new XElement("Subject",
+                new XAttribute("Id", "a9999999-9999-9999-9999-999999999999"),
+                new XAttribute("Name", "French"),
+                new XAttribute("SpecificRoom", "false"),
+                new XAttribute("RoomId", "b2222222-2222-2222-2222-222222222222") // Matches Room ID
+            ),
+            new XElement("Subject",
+                new XAttribute("Id", "b1111111-1111-1111-1111-111111111111"),
+                new XAttribute("Name", "Computer Science"),
+                new XAttribute("SpecificRoom", "true"),
+                new XAttribute("RoomId", "d1111111-1111-1111-1111-111111111111") // Matches Room ID
+            ),
+             new XElement("Subject",
+                new XAttribute("Id", "b2222222-2222-2222-2222-222222222222"),
+                new XAttribute("Name", "Psychology"),
+                new XAttribute("SpecificRoom", "false"),
+                new XAttribute("RoomId", "d1111111-1111-1111-1111-111111111111") // Matches Room ID
+            ),
+             new XElement("Subject",
+                new XAttribute("Id", "b3333333-3333-3333-3333-333333333333"),
+                new XAttribute("Name", "Sport"),
+                new XAttribute("SpecificRoom", "true"),
+                new XAttribute("RoomId", "d1111111-1111-1111-1111-111111111112") // Matches Room ID
             )
+
+
         )
     );
 

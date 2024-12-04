@@ -166,7 +166,7 @@ namespace TimeTableApp
                         e.teacher == entry.teacher &&
                         e.day == entry.day &&
                         e.hour == entry.hour) ||
-                    IsTeacherOverloaded(entry.teacher, existingEntries, 4, 20))
+                    IsTeacherOverloaded(entry.teacher, existingEntries, 6, 20))
                 {
                     return false;
                 }
@@ -269,7 +269,7 @@ namespace TimeTableApp
             var dailyRoomUsage = timetable.Where(e => e.room == room && e.group == group)
                                           .GroupBy(e => e.day)
                                           .Select(g => g.Count());
-            return dailyRoomUsage.Any(count => count > 3); // Max 3 uses per day
+            return dailyRoomUsage.Any(count => count > 6); // Max 3 uses per day
         }
         
         private bool ValidateFinalTimetable(IEnumerable<TimetableEntry> timetable, IEnumerable<Group> groups)
