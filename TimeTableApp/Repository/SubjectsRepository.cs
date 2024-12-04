@@ -60,21 +60,19 @@ namespace TimeTableApp.Repository
                             continue;
                         }
                         var specificRoomAttribute = elem.Attribute("SpecificRoom");
-                        if (specificRoomAttribute != null)
-                        {
-                            bool.TryParse(specificRoomAttribute.Value, out specificRoom);
-                        }
-                        if (!Guid.TryParse((string)elem.Attribute("RoomId"), out roomId))
-                        {
-                           // Console.WriteLine("Subject in if2: " + roomId);
-                            continue;
-                        }
+                        bool.TryParse(specificRoomAttribute.Value, out specificRoom);
+                        
+                       if (!Guid.TryParse((string)elem.Attribute("RoomId"), out roomId))
+                            {
+                                continue;
+                            }
+                        
                         Subject s;
-                        if (specificRoom)
+                        if (specificRoom == false)
                             s = new Subject(id, name);
                         else
                             s = new Subject(id, name, roomId);
-
+                        //Console.WriteLine(name + specificRoom.ToString());
                         SubjectsList.Add(s);
                     }
                 }
