@@ -26,3 +26,81 @@
 # Build directories
 /bin/
 /obj/
+
+# Ignore build artifacts and directories
+*.obj
+*.exe
+*.dll
+*.lib
+*.pdb
+*.idb
+*.ipch
+*.aps
+*.ncb
+*.sdf
+*.lastbuildstate
+*.vcxproj.user
+*.vcxproj.filters
+*.tlog
+*.log
+*.tmp
+*.temp
+*.cache
+*.ilk
+*.iobj
+*.ipdb
+*.opendb
+*.opensdf
+
+# Ignore output directories
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Ignore Visual Studio-specific files
+.vscode/
+*.vs
+
+# Ignore MPI-specific temporary files (adjust as needed)
+*.hostfile
+*.nodefile
+*.mpi
+
+# Ignore C++/general programming generated files
+*.o
+*.a
+*.so
+*.out
+*.d
+*.gcda
+*.gcno
+*.gcov
+
+# Ignore user-specific settings
+*.swp
+*.user
+*.userosscache
+*.suo
+*.pri
+*.psess
+
+# Ignore dependency manager files (if applicable)
+*.nuget
+*.cmake
+CMakeFiles/
+CMakeCache.txt
+Makefile
+
+# Ignore auto-generated files (optional, depending on your workflow)
+*.gen.cpp
+*.gen.h
+
+# Ignore folders specific to other IDEs (optional)
+.idea/
+.clangd/
+
+# Ignore any secrets or configurations (add specific filenames if applicable)
+.env
+.secrets
